@@ -1,0 +1,18 @@
+package com.korea.user.service;
+
+import org.springframework.stereotype.Service;
+
+import com.korea.user.persistence.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+	
+	private final UserRepository userRepository;
+	
+	public boolean isIdDuplicated(String id) {
+		userRepository.findById(id);
+
+}

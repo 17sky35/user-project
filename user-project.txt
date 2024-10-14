@@ -1,0 +1,85 @@
+프로젝트를 하게 되면 가장 많이 사용되는 기능
+
+회원관리 -> 시큐리티 사용해도 좋고 안해도 되긴함
+- 로그인
+- 회원가입
+- 회원수정
+
+Todo만 만들고 끝 -> 공공데이터를 이용한 서비스
+api를 불러와서 조회해보기
+
+1. 구조에 대한 파악
+2. 기능별로 파악
+
+---------------------------------------------------------------------------
+
+1. UserEntity
+속성
+idx(primary key)
+id(unique)
+pwd
+name(진짜이름)
+email
+
+2. UserDTO
+속성
+token
+idx
+id
+pwd
+name
+email
+
+3. UserRepository
+-아이디를 기준으로 유저를 검색하는 메서드
+
+4. ResponseDTO<T>
+속성
+error
+List<T>data
+
+5. UserService
+-UserRepository를 주입받는다
+
+5-1 id중복체크 메서드만들기
+메서드명 : isIdDuplicated(String id)
+
+5-2 회원 추가
+메서드명 :List<UserDTO> insert(UserDTO dto)
+id -> 중복되는게 있는지 먼저 검증
+pwd
+name
+email
+
+5-3 회원 전체조회
+
+6. UserController
+
+6-1 id중복조회
+메서드명 : isIdDuplicate(String id)
+
+6-2 회원가입
+메서드명 : sginup(UserDTO dto)
+
+
+
+
+
+
+http://localhost:9090/users/idCheck
+
+http://localhost:9090/users/signup
+
+http://localhost:9090/users/allUsers
+
+{
+    "userId" : "aaa",
+    "pwd" : "123",
+    "name" : "lee",
+    "email" : "111@naver.com"
+}
+
+
+
+
+

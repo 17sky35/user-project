@@ -1,0 +1,38 @@
+package com.korea.user.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.hibernate.sql.model.ast.builder.CollectionRowDeleteByUpdateSetNullBuilder;
+import org.springframework.stereotype.Service;
+
+import com.korea.user.dto.UserDTO;
+import com.korea.user.model.UserEntity;
+import com.korea.user.persistence.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+	
+	private final UserRepository userRepository;
+	
+	//id중복체크
+	public boolean isIdDuplicated(String id) {
+		if(userRepository.findById(id).isPresent()) {
+			return false;
+		}
+		return true;
+	}
+	//회원추가
+	public List<UserDTO> insert(UserDTO dto){
+		if(isIdDuplicated(dto.getId())) {
+			UserEntity entity = UserDTO.toEntity(dto);
+			userRepository.save(entity);
+			List<UserEntity> list = userRepository.findAll();
+			return list.stream().map(UserDTO::new).collect(Collectors.toList());
+		}
+	}
+	
+}

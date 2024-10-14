@@ -1,0 +1,27 @@
+package com.korea.user.dto;
+
+import com.korea.user.model.UserEntity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDTO {
+	
+	private String token;
+	private int idx;
+	private String id;
+	private String pwd;
+	private String name;
+	private String email;
+	
+	public static UserEntity toEntity (UserDTO dto) {
+		return UserEntity.builder().idx(dto.getIdx()).id(dto.getId()).pwd(dto.getPwd()).name(dto.getName()).email(dto.getEmail()).build();
+	}
+	
+}
