@@ -61,7 +61,11 @@ email
 6-2 회원가입
 메서드명 : sginup(UserDTO dto)
 
+7. UserService
 
+8. UserController
+리소스 : name
+메서드명 : getUserName
 
 
 
