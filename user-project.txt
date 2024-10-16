@@ -67,6 +67,18 @@ email
 리소스 : name
 메서드명 : getUserName
 
+9 로그아웃 하기
+App.js에 로그아웃 버튼 만들고 로그아웃 시키기
+
+10. 수정하기
+수정한 내용을 db에 반영시키기
+UserService
+-userModufy()
+
+UserContorller
+-리소스 : modify
+-HTTP : PUT
+-메서드 : modify()
 
 
 

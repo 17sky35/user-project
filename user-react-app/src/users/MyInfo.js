@@ -28,9 +28,26 @@ function MyInfo(){
         return <div>Loading...</div>
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const userId = user.userId;
+        const pwd = data.get("pwd");
+        const name = data.get("name");
+        const email = data.get("email");
+
+        call("/users/modify","PUT",{userId:userId,
+            pwd:pwd,
+            name:name,
+            email:email})
+        .then(result=>{
+            window.location.href="/main";
+        })
+    }
+
     return(
         <div>
-            <form noValidate>
+            <form noValidate onSubmit={handleSubmit}>
                 <table border="1" align="center">
                     <caption>:::내 정보:::</caption>
                     <tr>

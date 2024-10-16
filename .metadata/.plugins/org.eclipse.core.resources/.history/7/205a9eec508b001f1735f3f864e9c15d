@@ -107,8 +107,12 @@ public class UserController {
 	
 	//수정하기
 	@PutMapping("/modify")
-	public void modify(@RequestBody UserDTO dto){
-		userService.userModify(dto);
+	public ResponseEntity<?> modify(@RequestBody UserDTO dto){
+		UserEntity entity = userService.userModify(dto);
+		UserDTO dtos = new UserDTO(entity);
+		List<UserDTO> dtoss = Arrays.asList(dtos);
+		ResponseDTO<UserDTO> response = ResponseDTO.<UserDTO>builder().data(dtoss).build();
+		return ResponseEntity.ok().body(response);
 	}
 	
 	

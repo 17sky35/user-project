@@ -58,19 +58,16 @@ public class UserService {
 	}
 	
 	//수정하기
-	public void userModify(UserDTO dto) {
+	public UserEntity userModify(UserDTO dto) {
 		//원본을 db에서 꺼낸다.
 		Optional<UserEntity> option = userRepository.findByUserId(dto.getUserId());
-		//Optional : 값이 있는지 없는지 확인하는 클래스
+		//내가 가져온 내용으로 객체를 setting을 한다
 		if(option.isPresent()) {
 			UserEntity entity = option.get();
-			//내가 가져온 내용으로 객체를 setting을 한다
-			entity.setPwd(dto.getPwd());
-			entity.setName(dto.getName());
-			entity.setEmail(dto.getEmail());
-			//수정한내용을 db에 저장한다
 			userRepository.save(entity);
+			return entity;
 		}
+		return null;
 	}
 	
 	

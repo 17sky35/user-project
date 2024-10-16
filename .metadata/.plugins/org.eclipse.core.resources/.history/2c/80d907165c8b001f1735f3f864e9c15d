@@ -58,7 +58,7 @@ public class UserService {
 	}
 	
 	//수정하기
-	public void userModify(UserDTO dto) {
+	public UserEntity userModify(UserDTO dto) {
 		//원본을 db에서 꺼낸다.
 		Optional<UserEntity> option = userRepository.findByUserId(dto.getUserId());
 		//Optional : 값이 있는지 없는지 확인하는 클래스
@@ -70,6 +70,7 @@ public class UserService {
 			entity.setEmail(dto.getEmail());
 			//수정한내용을 db에 저장한다
 			userRepository.save(entity);
+			return entity;
 		}
 	}
 	
